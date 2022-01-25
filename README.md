@@ -33,3 +33,5 @@ This script does the following:
 ## Output 
 
 ![](./pic/output.png)
+
+![](./pic/rawoutput.png)
