@@ -31,5 +31,6 @@ This script does the following:
 * Sleep between executions 
 * Remove any leftover files from ```c:\Program Files\PeSieve2WindowsEventLog\logs``` folder
 
+## Output 
 
-
+![](./pic/output.png)
