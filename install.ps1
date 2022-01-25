@@ -5,7 +5,7 @@ $peSieve2WindowsEventLogging = "$peSieve2WindowsEventLogDir\logs"
 If(!(test-path $peSieve2WindowsEventLogDir)) {
   New-Item -ItemType Directory -Force -Path $peSieve2WindowsEventLogDir
 }
-
+Set-Location -Path $peSieve2WindowsEventLogDir
 If(!(test-path $peSieve2WindowsEventLogging)) {
   New-Item -ItemType Directory -Force -Path $peSieve2WindowsEventLogging
 }
@@ -27,6 +27,7 @@ if (! $logfileExists) {
 }
 
 $peSieve2WindowsEventLogDir = "$env:ProgramFiles\PeSieve2WindowsEventLog"
+Set-Location -Path $peSieve2WindowsEventLogDir
 $peSieve2WindowsEventLogging = "$peSieve2WindowsEventLogDir\logs"
 If(!(test-path $peSieve2WindowsEventLogDir)) {
   New-Item -ItemType Directory -Force -Path $peSieve2WindowsEventLogDir
