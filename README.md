@@ -1,6 +1,6 @@
 # Pe-SieveToWinEventLog
 
-This repository containing script which allow [pe-sieve]((https://github.com/hasherezade/pe-sieve) to log to Windows Event Log so it can be collected for scaled up incident response.
+This repository containing script which allow [pe-sieve](https://github.com/hasherezade/pe-sieve) to log to Windows Event Log so it can be collected for scaled up incident response.
 
 ## What is pe-sieve?
 
