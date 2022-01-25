@@ -50,6 +50,7 @@ foreach ($process in $Processes){
 	$args = "/jlvl 1 /pid $PX /json /ofilter 2"
 	# Start process and wait 2s
 	$proc = Start-Process -FilePath $binary -ArgumentList $args -RedirectStandardOut $pesieve_json -WindowStyle hidden -Passthru
+	$proc.WaitForExit()
 	start-sleep 3
     # Get content of output files created by above command
 	$bx = Get-Content $pesieve_json
