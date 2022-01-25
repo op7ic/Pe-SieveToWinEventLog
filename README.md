@@ -1,15 +1,14 @@
 # Pe-SieveToWinEventLog
 
-This repository containing script which allow pe-sieve to log to Windows Event Log. 
+This repository containing script which allow [pe-sieve](https://github.com/hasherezade/pe-sieve) to log to Windows Event Log so it can be collected for scaled up incident response.
 
-## What is pe-sieve
+## What is pe-sieve?
 
 From [author's webpage](https://github.com/hasherezade/pe-sieve):
 
-```
 PE-sieve is a tool that helps to detect malware running on the system, as well as to collect the potentially malicious material for further analysis. Recognizes and dumps variety of implants within the scanned process: replaced/injected PEs, shellcodes, hooks, and other in-memory patches.
 Detects inline hooks, Process Hollowing, Process Doppelgänging, Reflective DLL Injection, etc.
-```
+
 
 ## Installation Instructions
 
