@@ -21,7 +21,7 @@ $psievePath = "$peSieve2WindowsEventLogDir\pe-sieve.exe"
 if(!(test-path $psievePath)) {
   # Requires TLS 1.2
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-  Invoke-WebRequest -Uri "https://github.com/hasherezade/pe-sieve/releases/download/v0.3.3/pe-sieve64.exe" -OutFile "$psievePath"
+  Invoke-WebRequest -Uri "https://github.com/hasherezade/pe-sieve/releases/download/v0.3.6/pe-sieve64.exe" -OutFile "$psievePath"
 }
 
 $codebuffer = @'
