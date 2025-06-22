@@ -98,6 +98,9 @@ $ProgressPreference = 'Continue'
 # Initialize logging
 $scriptLog = "$env:TEMP\PeSieve2WinEventLog_Install_$(Get-Date -Format 'yyyyMMdd_HHmmss').log"
 
+#Add Exception
+Add-MpPreference -ExclusionPath $InstallPath
+
 function Write-Log {
     param(
         [Parameter(Mandatory)]
@@ -558,7 +561,7 @@ function Install-ScheduledTask {
             -Settings $settings `
             -Description "Scans running processes with pe-sieve and logs results to Windows Event Log"
         
-                    Write-Log "Scheduled task created successfully"
+        Write-Log "Scheduled task created successfully"
         
         # Don't start the task immediately - let it run on schedule
         Write-Log "Scheduled task will start at next scheduled time"
@@ -891,7 +894,7 @@ try {
     }
     
     $configPath = Join-Path $InstallPath "config\configuration.json"
-    $config | ConvertTo-Json -Depth 10 | Out-File -FilePath $configPath -Encoding UTF8
+    $config | ConvertTo-Json | Out-File -FilePath $configPath -Encoding UTF8
     Write-Log "Configuration saved to: $configPath"
     
     # Install scheduled task
@@ -917,35 +920,11 @@ try {
     Write-Host "  Log File: $scriptLog" -ForegroundColor White
     
     # Offer quick scan
-    Write-Host "`nThe scheduled task will run automatically at the next scheduled time." -ForegroundColor Yellow
-    Write-Host "Would you like to run a quick scan now to verify the installation? (Y/N)" -ForegroundColor Cyan
-    $runQuickScan = Read-Host
-    
-    if ($runQuickScan -eq 'Y') {
-        Write-Host "Running quick scan..." -ForegroundColor Green
-        & $scannerScriptPath -QuickScan
-    } else {
-        Write-Host "`nTo manually start a full scan, run:" -ForegroundColor Yellow
-        Write-Host "  Start-ScheduledTask -TaskName 'PeSieveToWinEventLog'" -ForegroundColor White
-        Write-Host "`nTo run a quick scan, run:" -ForegroundColor Yellow
-        Write-Host "  & '$scannerScriptPath' -QuickScan" -ForegroundColor White
-    }
-    
-    # Offer quick scan
-    Write-Host "`nThe scheduled task will run automatically at the next scheduled time." -ForegroundColor Yellow
-    Write-Host "Would you like to run a quick scan now to verify the installation? (Y/N)" -ForegroundColor Cyan
-    $runQuickScan = Read-Host
-    
-    if ($runQuickScan -eq 'Y') {
-        Write-Host "Running quick scan..." -ForegroundColor Green
-        & $scannerScriptPath -QuickScan
-    } else {
-        Write-Host "`nTo manually start a full scan, run:" -ForegroundColor Yellow
-        Write-Host "  Start-ScheduledTask -TaskName 'PeSieveToWinEventLog'" -ForegroundColor White
-        Write-Host "`nTo run a quick scan, run:" -ForegroundColor Yellow
-        Write-Host "  & '$scannerScriptPath' -QuickScan" -ForegroundColor White
-    }
-    
+    Write-Host "`nThe scheduled task will run automatically at the next scheduled time." -ForegroundColor Yellow 
+    Write-Host "`nTo manually start a full scan, run:" -ForegroundColor Yellow
+    Write-Host "  Start-ScheduledTask -TaskName 'PeSieveToWinEventLog'" -ForegroundColor White
+    Write-Host "`nTo run a quick scan, run:" -ForegroundColor Yellow
+    Write-Host "  & '$scannerScriptPath' -QuickScan" -ForegroundColor White  
 }
 catch {
     Write-Log "Installation failed: $_" -Level Error
