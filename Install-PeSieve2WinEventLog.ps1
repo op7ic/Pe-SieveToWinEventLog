@@ -876,7 +876,12 @@ try {
     
     # Get version info for configuration
     $versionFile = Join-Path $InstallPath "pe-sieve.version"
-    $installedVersion = if (Test-Path $versionFile) { Get-Content $versionFile } else { "unknown" }
+    $installedVersion = if (Test-Path $versionFile) { 
+        # Use -Raw to get just the string content without PowerShell metadata
+        (Get-Content $versionFile -Raw -ErrorAction SilentlyContinue).Trim()
+    } else { 
+        "unknown" 
+    }
     
     # Initialize event log
     Initialize-EventLog
@@ -891,6 +896,7 @@ try {
         PeSieveVersion = $installedVersion
         ScanInterval = $ScanIntervalMinutes
         InstallPath = $InstallPath
+		EventLogSizeMB = $EventLogSizeMB
     }
     
     $configPath = Join-Path $InstallPath "config\configuration.json"
